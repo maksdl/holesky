@@ -96,5 +96,5 @@ echo "beacon_rpc:"
 echo "  holesky: \"http://${IP_ADDR}:5053\""
 
 echo -e "\nДля просмотра логов:"
-echo "Execution: docker logs -f ethereum-execution-holesky"
-echo "Consensus: docker logs -f ethereum-consensus-holesky"
+echo "docker logs -f ethereum-execution-holesky"
+echo "docker logs -f ethereum-consensus-holesky"
