@@ -5,7 +5,6 @@ mkdir -p ~/holesky-node/{execution,consensus}/data && cd ~/holesky-node
 
 # Создаем docker-compose.yml
 cat << 'EOF' > docker-compose.yml
-version: '3.8'
 
 services:
   execution:
@@ -82,22 +81,21 @@ if command -v ufw &> /dev/null; then
 fi
 
 # Запускаем ноду
-docker-compose up -d
+docker compose up -d
 
-# Получаем IP-адрес сервера
-SERVER_IP=$(curl -s ifconfig.me)
+# Выводим итоговую информацию
+echo -e "\n\n=== УСТАНОВКА ЗАВЕРШЕНА ==="
+echo -e "\nДля просмотра логов execution слоя:"
+echo "docker logs -f ethereum-execution-holesky"
 
-echo -e "\n\033[1;32m✅ Нода Holesky успешно запущена!\033[0m"
-echo "--------------------------------------------------"
-echo -e "\033[1;36mRPC-доступ:\033[0m"
-echo "HTTP URL: http://$SERVER_IP:8547"
-echo "WebSocket URL: ws://$SERVER_IP:8552"
-echo "Beacon API: http://$SERVER_IP:5053"
-echo ""
-echo -e "\033[1;36mКоманды для проверки логов:\033[0m"
-echo "Geth:    docker logs -f ethereum-execution-holesky"
-echo "Lighthouse: docker logs -f ethereum-consensus-holesky"
-echo ""
-echo -e "\033[1;36mОстановка ноды:\033[0m"
-echo "cd ~/holesky-node && docker-compose down"
-echo "--------------------------------------------------"
+echo -e "\nДля просмотра логов consensus слоя:"
+echo "docker logs -f ethereum-consensus-holesky"
+
+echo -e "\nДля использования RPC:"
+echo "ethereum_rpc:"
+echo "  sepolia: \"http://${IP_ADDR}:8545\""
+echo "beacon_rpc:"
+echo "  sepolia: \"http://${IP_ADDR}:5052\""
+
+echo -e "\nКонтейнеры работают:"
+docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
