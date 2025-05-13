@@ -89,12 +89,9 @@ IP_ADDR=$(hostname -I | awk '{print $1}')
 
 # Выводим итоговую информацию
 echo -e "\n\n=== УСТАНОВКА ЗАВЕРШЕНА ==="
-echo -e "\nДля использования RPC:"
-echo "ethereum_rpc:"
-echo "  holesky: \"http://${IP_ADDR}:8547\""
-echo "beacon_rpc:"
-echo "  holesky: \"http://${IP_ADDR}:5053\""
-
-echo -e "\nДля просмотра логов:"
+echo -e "\nRPC endpoints:"
+echo "http://${IP_ADDR}:8547"
+echo "http://${IP_ADDR}:5053"
+echo -e "\nКоманды для логов:"
 echo "docker logs -f ethereum-execution-holesky"
 echo "docker logs -f ethereum-consensus-holesky"
