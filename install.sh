@@ -29,8 +29,8 @@ services:
       - "--authrpc.vhosts=*"
       - "--authrpc.jwtsecret=/jwtsecret/jwt.hex"
     ports:
-      - "8547:8545"
-      - "8552:8551"
+      - "8545:8545"
+      - "8551:8551"
     volumes:
       - ./execution/data:/data
       - ./execution/jwtsecret:/jwtsecret
@@ -53,8 +53,8 @@ services:
       - "--execution-endpoint=http://execution:8551"
       - "--execution-jwt=/jwtsecret/jwt.hex"
     ports:
-      - "9001:9000"
-      - "5053:5052"
+      - "9000:9000"
+      - "5052:5052"
     volumes:
       - ./consensus/data:/data
       - ./execution/jwtsecret:/jwtsecret
@@ -74,11 +74,11 @@ openssl rand -hex 32 > ./execution/jwtsecret/jwt.hex
 
 # Открываем порты в firewall (если ufw)
 if command -v ufw &> /dev/null; then
-  sudo ufw allow 8547/tcp   # JSON-RPC
-  sudo ufw allow 8552/tcp   # Auth-RPC
-  sudo ufw allow 9001/tcp   # P2P
-  sudo ufw allow 5053/tcp   # Beacon API
-  echo "Порты 8547, 8552, 9001 и 5053 открыты в firewall"
+  sudo ufw allow 8545/tcp   # JSON-RPC
+  sudo ufw allow 8551/tcp   # Auth-RPC
+  sudo ufw allow 9000/tcp   # P2P
+  sudo ufw allow 5052/tcp   # Beacon API
+  echo "Порты 8545, 8551, 9000 и 5052 открыты в firewall"
 fi
 
 # Запускаем ноду
@@ -91,9 +91,9 @@ IP_ADDR=$(hostname -I | awk '{print $1}')
 echo -e "\n\n=== УСТАНОВКА ЗАВЕРШЕНА ==="
 echo -e "\nRPC endpoints:"
 echo "holesky:"
-echo "http://${IP_ADDR}:8547"
+echo "http://${IP_ADDR}:8545"
 echo "Beacon:"
-echo "http://${IP_ADDR}:5053"
+echo "http://${IP_ADDR}:5052"
 echo -e "\nКоманды для логов:"
 echo "docker logs -f ethereum-execution-holesky"
 echo "docker logs -f ethereum-consensus-holesky"
