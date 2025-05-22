@@ -5,8 +5,6 @@ mkdir -p ~/holesky-node/{execution,consensus}/data && cd ~/holesky-node
 
 # Создаем docker-compose.yml
 cat << 'EOF' > docker-compose.yml
-version: '3.8'
-
 services:
   execution:
     image: ethereum/client-go:stable
