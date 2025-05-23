@@ -47,7 +47,7 @@ services:
       - "--http"
       - "--http-address=0.0.0.0"
       - "--http-port=5052"
-      - "--checkpoint-sync-url=https://holesky.beaconstate.info"
+      - "--checkpoint-sync-url=https://holesky.checkpoint.sigp.io"
       - "--execution-endpoint=http://execution:8551"
       - "--execution-jwt=/jwtsecret/jwt.hex"
     ports:
