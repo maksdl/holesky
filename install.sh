@@ -1,12 +1,10 @@
 #!/bin/bash
 
 # Создаем структуру папок
-mkdir -p ~/holesky-node/{execution,consensus}/data && cd ~/holesky-node
+mkdir -p ~/holesky/{execution,consensus}/data && cd ~/holesky
 
 # Создаем docker-compose.yml
 cat << 'EOF' > docker-compose.yml
-version: '3.8'
-
 services:
   execution:
     image: ethereum/client-go:stable
